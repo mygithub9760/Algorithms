@@ -151,8 +151,9 @@ bool isBST(BSTNode* root)
 {
 	if(!root) return 1;
 	if(!root->left && !root->right) return 1;
-	if((root->left && root->data < root->left->data) || (root->right && root->data > root->right->data)) return 0;
-	return (isBST(root->left) && isBST(root->right));
+	if((root->data > FindMax(root->left)->data)&&(root->data < FindMin(root->right)->data)&&isBStT(root->left)&&isBST(root->right))
+		return 1;
+	return 0;
 }
 
 bool isBSTImproved(BSTNode* root, int min, int max)
