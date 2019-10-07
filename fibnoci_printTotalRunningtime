@@ -1,0 +1,47 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    //Recursive method
+    public int fibRecursive(int n) {
+        //If n is in the 0th or 1st place return n
+        if (n <= 1)
+            return n;
+        return fibRecursive(n - 1) + fibRecursive(n - 2);
+    }
+    //Iterative method
+    public int fibIterative(int n) {
+        if (n <= 1)
+            return n;
+        int fib = 1, prevFib = 1;
+        for (int i = 2; i < n; i++) {
+            int temp = fib;
+            fib += prevFib;
+            prevFib = temp;
+        }
+        return fib;
+    }
+    //Display and print running time
+    public static void dispTime() {
+        long startTime = System.nanoTime();
+        System.out.println("t = " + (System.nanoTime() - startTime) + " nanosecs.");
+    }
+
+    public static void main(String[] args) {
+        Main fib = new Main();
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter a value for n: ");
+        int n = input.nextInt();
+
+        System.out.println("Iterative version:");
+        long startTime = System.nanoTime();
+        System.out.println(fib.fibIterative(n));
+        System.out.println("t = " + (System.nanoTime() - startTime) + " nanosecs.");
+
+        System.out.println("Recursive version:");
+        startTime = System.nanoTime();
+        System.out.println(fib.fibRecursive(n));
+        System.out.println("t = " + (System.nanoTime() - startTime) + " nanosecs.");
+    }
+}
